@@ -11,8 +11,8 @@ int main(void)
 	_printf("%c\n", 'K');
 	_printf("%s\n", "We are testing!!!");
 
-	_printf("%c\n", Alphabets);
-	_printf("%s\n", strHolder);
+	_printf("c\n", Alphabets);
+	_printf("s\n", strHolder);
 	
 	return (0);
 }
