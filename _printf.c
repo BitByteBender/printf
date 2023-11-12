@@ -5,34 +5,17 @@
 #include <stddef.h>
 
 /**
- *
+ * _printf - outputs data to console
+ * @format: specified the type of args to be printed
+ * processes the format string and prints specified data to console
+ * Supports chars(%c), strings(%s) and signed-ints(%d) using enums
+ * Support escape sequences such as \t (tab) and \n (new line) using enums
+ * suppot backslash & percent specifier
+ * checks if current char is part of format specifier or not
+ * checks for escape sequences after a backslash
+ * Return:
+ * total number of processed chars
  */
-<<<<<<< HEAD
-
-void writeChar(char);
-
-void writeStr(const char *);
-
-typedef enum
-{
-	chars = 'c',
-	strings = 's'
-} enDataTypes;
-
-typedef enum
-{
-	tab = 't',
-	newLine = 'n'
-} enEscapeSequences;
-
-struct stDataHandlers
-{
-	char Backslash;
-	char PercentSpecifier;
-};
-
-=======
->>>>>>> 8063231... Committing changes to master
 int _printf(const char *format, ...)
 {
 	enDataTypes Types;
@@ -93,21 +76,3 @@ int _printf(const char *format, ...)
 	
 	return (argCounter);
 }
-<<<<<<< HEAD
-
-void writeChar(char c)
-{
-	write(STDOUT_FILENO, &c, sizeof(char));
-}
-
-void writeStr(const char *str)
-{
-	unsigned short strLength = 0;
-
-	while (str[strLength])
-		strLength++;
-
-	write(STDOUT_FILENO, str, strLength);
-}
-=======
->>>>>>> 8063231... Committing changes to master
