@@ -11,13 +11,6 @@ void writeStr(const char *);
 
 char *_strcpy(char *, char *);
 
-typedef enum
-{
-	chars = 'c',
-	strings = 's'
-} enDataTypes;
-
-
 int _printf(const char *format, ...)
 {
 	enDataTypes Types;
