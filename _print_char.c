@@ -104,21 +104,3 @@ void writeStr(const char *str)
 
 	write(STDOUT_FILENO, str, strLength);
 }
-
-char *_strcpy(char *Dest, char *src)
-{
-	unsigned short i = 0, srcLength = 0;
-	
-	while (src[srcLength])
-		srcLength++;
-
-	if (src == NULL)
-		return (NULL);
-	
-	for (i = 0; i <= (srcLength - 1); i++)
-	{
-	Dest[i] = src[i];
-	}
-	Dest[srcLength] = '\0';
-	return (Dest);
-}
