@@ -22,6 +22,13 @@ int main(void)
 	_printf("\nMy name in chars:[%c, %c, %c, %c, %c, %c, %c, %c]", 'S', 'O', 'U', 'F', 'I', 'A', 'N', 'E');
 	_printf("\nTeam name:{%s%s %c %s%s}\n\n", "Sad", "gali", '&', "Mena", "Ujiri");
 	_printf("\nTeam name:{%s%s%c%s%s %c %s%s%c%s%s}\n\n", "Souf", "iane", ' ', "Sad", "gali", '&', "Ekoro", "mena", ' ', "Uj", "iri");
+<<<<<<< HEAD
 	
+=======
+	_printf("Integer test:[%d]", (1 + 1));
+	_printf("\n%d\n", 5);
+	_printf("%d\n\n", 89);
+	_printf("%");
+>>>>>>> f1eff57c1316c84fd2fc5093016f1d7e2bf1c03f
 	return (0);
 }
