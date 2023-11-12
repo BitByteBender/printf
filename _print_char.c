@@ -1,4 +1,5 @@
 #include "../headers/main.h"
+#include <stdio.h>
 
 /**
  *
