@@ -6,7 +6,7 @@
  * Return: (1)
  */
 
-int _string(char *str)
+int _strlen(char *str)
 {
 	int i;
 	
