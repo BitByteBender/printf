@@ -9,8 +9,6 @@ void writeChar(char);
 
 void writeStr(const char *);
 
-char *_strcpy(char *, char *);
-
 int _printf(const char *format, ...)
 {
 	enDataTypes Types;
