@@ -5,8 +5,6 @@
  *
  */
 
-void writeChar(char);
-
 int _printf(const char *format, ...)
 {
 	enDataTypes Types;
