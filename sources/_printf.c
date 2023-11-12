@@ -1,46 +1,64 @@
-#include "main.h"
+#include "../headers/main.h"
 #include <unistd.h>
 #include <stdarg.h>
 #include <stdlib.h>
 #include <stddef.h>
+
 /**
  *
  */
-
-void writeChar(char);
-
-void writeStr(const char *);
-
-typedef enum
-{
-	chars = 'c',
-	strings = 's',
-} enDataTypes;
-
 int _printf(const char *format, ...)
 {
 	enDataTypes Types;
+	enEscapeSequences Esequences;
+
+	struct stDataHandlers DataHandler = {'\\', '%'};
 	unsigned short argCounter = 0;
-	const char *strHodler, *CurrentType = format;
-	char Specifier = '%';
+	const char *strHolder, *currentType = format;
+	struct stDataHandlers *ptrDataHandler = &DataHandler;
 	
 	va_list args;
 
 	va_start(args, format);
-
-	while (CurrenType[argCounter] != '\0')
+	
+	
+	while (currentType[argCounter] != '\0')
 	{
-	Types = (enDataTypes)CurrentType[argCounter];
-
-	switch (Types)
+	Types = (enDataTypes)currentType[argCounter];
+		
+	if ((argCounter != 0 && currentType[argCounter - 1] == (ptrDataHandler->PercentSpecifier)) || currentType[argCounter] == (ptrDataHandler->PercentSpecifier))
 	{
-	case (chars):
-		writeChar(va_arg(args, int);
+		switch (Types)
+		{
+		case (chars):
+		writeFunc(va_arg(args, int), sizeof(char));
 		break;
-	case (strings):
-		strHolder = va_arg(arg, char *);
+		case (strings):
+		strHolder = va_arg(args, char *);
 		writeStr(strHolder);
 		break;
+		case (signedInteger):
+		printIntegers(va_arg(args, int), sizeof(int));
+		break;
+		}
+	}
+	else if (currentType[argCounter] == (ptrDataHandler->Backslash) && (argCounter == 0 || currentType[argCounter - 1] == (ptrDataHandler->PercentSpecifier)))
+	{
+		Esequences = (enEscapeSequences)currentType[argCounter + 1];
+			switch (Esequences)
+			{
+			case (tab):
+			writeFunc('\t', sizeof(char));
+			break;
+			case (newLine):
+			writeFunc('\n', sizeof(char));
+			break;
+			}
+	argCounter++;
+	}
+	else
+	{
+	writeFunc(currentType[argCounter], sizeof(char));
 	}
 	argCounter++;	
 	}
@@ -48,38 +66,4 @@ int _printf(const char *format, ...)
 	va_end(args);
 	
 	return (argCounter);
-}
-
-void writeChar(char c)
-{
-	char *cBuffer = (char *)malloc(sizeof(char));
-
-	if (cBuffer == NULL)
-		exit(6);
-
-	cBuffer[0] = c;
-
-	write(STDOUT_FILENO, cBuffer, sizeof(char));
-
-	free(cBuffer);
-}
-
-void writeStr(const char *str)
-{
-	unsigned short i = 0, strLength = 0;
-
-	while (str[strLength])
-		strLength++;
-
-	char *strBuffer = (char *)malloc(strLength);
-
-	if (strBuffer == NULL)
-		exit(6);
-
-	for (i = 0; i <= (strLength - 1); i++)
-		strBuffer[i] = str[i];
-
-	write(STDOUT_FILENO, strBuffer, strLength);
-
-	free(strBuffer);
 }
