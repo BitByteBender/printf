@@ -17,17 +17,6 @@ typedef enum
 	strings = 's'
 } enDataTypes;
 
-typedef enum
-{
-	tab = 't',
-	newLine = 'n'
-} enEscapeSequences;
-
-struct stDataHandlers
-{
-	char Backslash;
-	char PercentSpecifier;
-};
 
 int _printf(const char *format, ...)
 {
