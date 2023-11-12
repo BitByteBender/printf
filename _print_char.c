@@ -7,8 +7,6 @@
 
 void writeChar(char);
 
-void writeStr(const char *);
-
 int _printf(const char *format, ...)
 {
 	enDataTypes Types;
