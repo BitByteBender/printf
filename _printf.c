@@ -7,6 +7,7 @@
 /**
  *
  */
+<<<<<<< HEAD
 
 void writeChar(char);
 
@@ -30,6 +31,8 @@ struct stDataHandlers
 	char PercentSpecifier;
 };
 
+=======
+>>>>>>> 8063231... Committing changes to master
 int _printf(const char *format, ...)
 {
 	enDataTypes Types;
@@ -43,7 +46,8 @@ int _printf(const char *format, ...)
 	va_list args;
 
 	va_start(args, format);
-
+	
+	
 	while (currentType[argCounter] != '\0')
 	{
 	Types = (enDataTypes)currentType[argCounter];
@@ -53,11 +57,14 @@ int _printf(const char *format, ...)
 		switch (Types)
 		{
 		case (chars):
-		writeChar(va_arg(args, int));
+		writeFunc(va_arg(args, int), sizeof(char));
 		break;
 		case (strings):
 		strHolder = va_arg(args, char *);
 		writeStr(strHolder);
+		break;
+		case (signedInteger):
+		printIntegers(va_arg(args, int), sizeof(int));
 		break;
 		}
 	}
@@ -67,19 +74,18 @@ int _printf(const char *format, ...)
 			switch (Esequences)
 			{
 			case (tab):
-			writeChar('\t');
+			writeFunc('\t', sizeof(char));
 			break;
 			case (newLine):
-			writeChar('\n');
+			writeFunc('\n', sizeof(char));
 			break;
 			}
 	argCounter++;
 	}
 	else
 	{
-	writeChar(currentType[argCounter]);
+	writeFunc(currentType[argCounter], sizeof(char));
 	}
-
 	argCounter++;	
 	}
 
@@ -87,6 +93,7 @@ int _printf(const char *format, ...)
 	
 	return (argCounter);
 }
+<<<<<<< HEAD
 
 void writeChar(char c)
 {
@@ -102,3 +109,5 @@ void writeStr(const char *str)
 
 	write(STDOUT_FILENO, str, strLength);
 }
+=======
+>>>>>>> 8063231... Committing changes to master
