@@ -20,22 +20,21 @@ int _printf(const char *format, ...)
 {
 	enDataTypes Types;
 	enEscapeSequences Esequences;
-
 	struct stDataHandlers DataHandler = {'\\', '%'};
-	unsigned short argCounter = 0;
-	const char *strHolder, *currentType = format;
-	struct stDataHandlers *ptrDataHandler = &DataHandler;
-	
+	unsigned short argCount = 0;
+	const char *strHolder, *curType = format;
+	struct stDataHandlers *ptrData = &DataHandler;
+
 	va_list args;
 
 	va_start(args, format);
-	
-	
-	while (currentType[argCounter] != '\0')
-	{
-	Types = (enDataTypes)currentType[argCounter];
 
-	if ((argCounter != 0 && currentType[argCounter - 1] == (ptrDataHandler->PercentSpecifier)) || currentType[argCounter] == (ptrDataHandler->PercentSpecifier))
+	while (curType[argCount] != '\0')
+	{
+	Types = (enDataTypes)curType[argCount];
+
+	if ((argCount != 0 && curType[argCount - 1] == (ptrData->PercentSpecifier))
+	|| curType[argCount] == (ptrData->PercentSpecifier))
 	{
 		switch (Types)
 		{
@@ -51,9 +50,10 @@ int _printf(const char *format, ...)
 		break;
 		}
 	}
-	else if (currentType[argCounter] == (ptrDataHandler->Backslash) && (argCounter == 0 || currentType[argCounter - 1] == (ptrDataHandler->PercentSpecifier)))
+	else if (curType[argCount] == (ptrData->Backslash) && (argCount == 0
+	|| curType[argCount - 1] == (ptrData->PercentSpecifier)))
 	{
-		Esequences = (enEscapeSequences)currentType[argCounter + 1];
+		Esequences = (enEscapeSequences)curType[argCount + 1];
 			switch (Esequences)
 			{
 			case (tab):
@@ -63,16 +63,14 @@ int _printf(const char *format, ...)
 			writeFunc('\n', sizeof(char));
 			break;
 			}
-	argCounter++;
+	argCount++;
 	}
 	else
 	{
-	writeFunc(currentType[argCounter], sizeof(char));
+	writeFunc(curType[argCount], sizeof(char));
 	}
-	argCounter++;	
+	argCount++;
 	}
-
 	va_end(args);
-	
-	return (argCounter);
+	return (argCount);
 }

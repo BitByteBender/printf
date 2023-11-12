@@ -1,4 +1,4 @@
-#include "../headers/main.h"
+#include "main.h"
 #include <unistd.h>
 #include <stdlib.h>
 /**
@@ -11,5 +11,5 @@ void writeStr(const char *str)
 	while (str[strLength])
 		strLength++;
 
-	write(STDOUT_FILENO, str, strLength);
+	write(1, str, strLength);
 }
