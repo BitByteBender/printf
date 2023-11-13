@@ -8,11 +8,8 @@
  * _printf - outputs data to console
  * @format: specified the type of args to be printed
  * processes the format string and prints specified data to console
- * Supports chars(%c), strings(%s) and signed-ints(%d) using enums
- * Support escape sequences such as \t (tab) and \n (new line) using enums
- * suppot backslash & percent specifier
+ * Supports chars(%c), strings(%s) and percentSpecifier (%) using enums
  * checks if current char is part of format specifier or not
- * checks for escape sequences after a backslash
  * Return:
  * total number of processed chars
  */
