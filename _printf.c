@@ -25,6 +25,9 @@ int _printf(const char *format, ...)
 
 	va_list args;
 
+	if (format == NULL)
+		return (-1);
+
 	va_start(args, format);
 
 	while (curType[argCount] != '\0')
