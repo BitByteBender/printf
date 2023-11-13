@@ -23,13 +23,13 @@ int _printf(const char *format, ...)
 	const char *curType = format;
 	struct stDataHandlers *ptrData = &DataHandler;
 
+	va_list args;
+
 	if (format == NULL)
 	{
 	writeStr("Error!");
 	return (-1);
 	}
-
-	va_list args;
 
 	va_start(args, format);
 
