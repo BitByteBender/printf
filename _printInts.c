@@ -5,48 +5,46 @@
 /**
  * writeInts - prints integer
  * @val: integer to be printed
- * dynamically allocates memory to the buffer
- * frees memory at the end
+ * checks if val is 0 or negative
+ * extract digits from val and store them in buffer
+ * adds negative sign if val was negative
+ * writes buffer in reverse
  */
 void writeInts(int val)
 {
-	int valHolder = val;
-	unsigned short Length = CHECK_LENGTH(valHolder);
-	char *buffer, *ptrBuffer;
+	char buffer[BUFFER_SIZE];
+	size_t valChecker = 0, Length = 0;
+	unsigned short i = 0;
 
-	if (valHolder != 0)
+	if (val == 0)
 	{
-	valHolder /= 10;
-	Length++;
+	write(1, "0", 1);
+	return;
 	}
 
-	buffer = (char *)malloc(Length + 2);
+	if (val < 0)
+	{
+	valChecker = 1;
+	val = -val;
+	}
 
-	if (buffer == NULL)
+	while (val > 0 && Length < BUFFER_SIZE)
+	{
+	buffer[Length++] = '0' + (val % 10);
+	val /= 10;
+	}
+
+	if (Length >= sizeof(buffer))
 	{
 	write(1, "Error!", 6);
 	return;
 	}
 
-	valHolder = val;
-
-	ptrBuffer = buffer + Length + 1;
-	*ptrBuffer = '\0';
-
-	while (valHolder != 0)
+	if (valChecker)
 	{
-	ptrBuffer--;
-	*ptrBuffer = '0' + ABS(valHolder % 10);
-	valHolder /= 10;
+	buffer[Length++] = '-';
 	}
 
-	if (val < 0)
-	{
-	ptrBuffer--;
-	*ptrBuffer = '-';
-	}
-
-	write(1, buffer, Length + 1);
-
-	free(buffer);
+	for (i = 0; i < Length; i++)
+		write(1, &buffer[Length - i - 1], 1);
 }

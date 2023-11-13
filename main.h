@@ -3,6 +3,8 @@
 #include <unistd.h>
 #include <stdarg.h>
 
+#define BUFFER_SIZE 100
+
 #define ABS(x) (((x) < 0) ? (-x) : (x))
 
 #define CHECK_LENGTH(x) (((x) == 0) ? (0) : (1))
