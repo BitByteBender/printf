@@ -12,5 +12,12 @@ void writeStr(const char *str)
 	while (str[strLength])
 		strLength++;
 
+	if (str == NULL)
+	{
+	write(1, "(nil)", 5);
+	return;
+	}
+
 	write(1, str, strLength);
+
 }
