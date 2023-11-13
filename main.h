@@ -57,6 +57,6 @@ int _printf(const char *, ...);
 
 void dataTypesHandler(char, va_list args);
 
-void escapeSequenceHandler(char);
+int escapeSequenceHandler(char);
 
 #endif /* MAIN_H */
