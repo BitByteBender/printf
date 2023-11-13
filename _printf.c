@@ -27,7 +27,6 @@ int _printf(const char *format, ...)
 
 	if (format == NULL)
 	{
-	writeStr("Error!");
 	return (-1);
 	}
 
