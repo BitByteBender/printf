@@ -5,7 +5,7 @@
 
 #define ABS(x) (((x) < 0) ? (-x) : (x))
 
-#define CHECK_LENGTH(x) (((x) == 0) ? (1) : (0))
+#define CHECK_LENGTH(x) (((x) == 0) ? (0) : (1))
 /**
  * typedef enum enDataTypes - holds data types
  * @enum: enumerates different data types

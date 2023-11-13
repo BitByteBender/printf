@@ -14,7 +14,7 @@ void writeInts(int val)
 	unsigned short Length = CHECK_LENGTH(valHolder);
 	char *buffer, *ptrBuffer;
 
-	while (valHolder != 0)
+	if (valHolder != 0)
 	{
 	valHolder /= 10;
 	Length++;
