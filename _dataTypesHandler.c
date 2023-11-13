@@ -10,8 +10,6 @@
  */
 void dataTypesHandler(char Types, va_list args)
 {
-	char *strHolder;
-
 	switch (Types)
 	{
 	case (chars):
@@ -24,8 +22,7 @@ void dataTypesHandler(char Types, va_list args)
 	writeInts(va_arg(args, int));
 	break;
 	default:
-	strHolder = "Error! wrong format specifier";
-	write(1, strHolder, sizeof(strHolder));
+	writeFunc('%', sizeof(char));
 	break;
 	}
 }

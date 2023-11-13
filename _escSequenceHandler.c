@@ -7,6 +7,14 @@
  */
 void escapeSequenceHandler(char Seq)
 {
+	struct stDataHandlers DataHandler = {'\\', '%'};
+
+	if (Seq == DataHandler.PercentSpecifier)
+	{
+	writeFunc('%', sizeof(char));
+	}
+	else
+	{
 	switch (Seq)
 	{
 	case (tab):
@@ -15,6 +23,11 @@ void escapeSequenceHandler(char Seq)
 	case (newLine):
 	writeFunc('\n', sizeof(char));
 	break;
+	default:
+	writeFunc('%', sizeof(char));
+	writeFunc(Seq, sizeof(char));
+	break;
+	}
 	}
 
 }
