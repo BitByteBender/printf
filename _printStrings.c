@@ -2,7 +2,8 @@
 #include <unistd.h>
 #include <stdlib.h>
 /**
- *
+ * writeStr - prints sting
+ * @str: string to be printed
  */
 void writeStr(const char *str)
 {

@@ -1,7 +1,12 @@
-#include "../headers/main.h"
+#include "main.h"
 
 /**
+ * calcExponent - perform power calculation
+ * @base: base number to be powered
+ * @expo: exponent value
  *
+ * Return:
+ * calculated exponent
  */
 short calcExponent(short base, short expo)
 {
