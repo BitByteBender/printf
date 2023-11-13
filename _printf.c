@@ -19,11 +19,13 @@
 int _printf(const char *format, ...)
 {
 	struct stDataHandlers DataHandler = {'\\', '%'};
-	unsigned short argCount = 0;
+	int argCount = 0, dataTypeResult = 0;
 	const char *curType = format;
 	struct stDataHandlers *ptrData = &DataHandler;
 
 	va_list args;
+
+	enDataTypes Types;
 
 	if (format == NULL)
 	{
@@ -32,26 +34,26 @@ int _printf(const char *format, ...)
 
 	va_start(args, format);
 
-	while (curType[argCount] != '\0')
+	while (*curType != '\0')
 	{
-	if (curType[argCount] == (ptrData->PercentSpecifier))
+	if (*curType == (ptrData->PercentSpecifier))
 	{
-		argCount++;
-		if (curType[argCount] == '\\')
+		curType++;
+		Types = *curType;
+
+		dataTypeResult = dataTypesHandler(Types, args);
+
+		if (dataTypeResult == -1)
 		{
-		argCount += escapeSequenceHandler(curType[argCount + 1]);
-		argCount++;
+			return (-1);
 		}
-		else
-		{
-		dataTypesHandler(curType[argCount], args);
-		}
+		argCount += dataTypeResult;
 	}
 	else
 	{
-	writeFunc(curType[argCount], sizeof(char));
+	argCount += write(1, curType, sizeof(char));
 	}
-	argCount++;
+	curType++;
 	}
 	va_end(args);
 	return (argCount);

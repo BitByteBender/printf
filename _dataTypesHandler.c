@@ -7,22 +7,23 @@
  * @args: variable arg-list
  * this function perform a switch based on
  * chosen data type
+ * Return:
+ * number of processed chars
  */
-void dataTypesHandler(char Types, va_list args)
+int dataTypesHandler(enDataTypes Types, va_list args)
 {
+	char charHolder;
+
 	switch (Types)
 	{
 	case (chars):
-	writeFunc(va_arg(args, int), sizeof(char));
-	break;
+	charHolder = (char)va_arg(args, int);
+	return (write(1, &charHolder, sizeof(char)));
 	case (strings):
-	writeStr(va_arg(args, char *));
-	break;
-	case (signedInteger):
-	writeInts(va_arg(args, int));
-	break;
+	return (write(1, va_arg(args, char *), sizeof(char *)));
+	case (percentSpecifier):
+	return (write(1, "%", sizeof(char)));
 	default:
-	writeFunc('%', sizeof(char));
-	break;
+	return (write(1, "Err! Data types", sizeof("Err! Data types")));
 	}
 }

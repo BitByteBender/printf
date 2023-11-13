@@ -16,8 +16,7 @@ typedef enum
 {
 chars = 'c',
 strings = 's',
-signedInteger = 'd'
-/*octHex_signedInteger = 'i'*/
+percentSpecifier = '%'
 } enDataTypes;
 
 /**
@@ -55,7 +54,7 @@ int printIntegers(int, int);
 
 int _printf(const char *, ...);
 
-void dataTypesHandler(char, va_list args);
+int dataTypesHandler(enDataTypes Types, va_list args);
 
 int escapeSequenceHandler(char);
 
