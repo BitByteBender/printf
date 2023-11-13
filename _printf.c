@@ -10,6 +10,8 @@
  * processes the format string and prints specified data to console
  * Supports chars(%c), strings(%s) and percentSpecifier (%) using enums
  * checks if current char is part of format specifier or not
+ * handles the case where (%) is at the end of a string
+ * support (%%) as a special case and output it as a single (%)
  * Return:
  * total number of processed chars
  */
@@ -25,9 +27,7 @@ int _printf(const char *format, ...)
 	enDataTypes Types;
 
 	if (format == NULL)
-	{
-	return (-1);
-	}
+		return (-1);
 
 	va_start(args, format);
 
@@ -36,20 +36,23 @@ int _printf(const char *format, ...)
 	if (*curType == (ptrData->PercentSpecifier))
 	{
 		curType++;
+		while (*curType == (ptrData->PercentSpecifier))
+		{
+			write(1, "%", sizeof(char));
+			argCount++;
+			curType++;
+		}
 		Types = *curType;
-
 		dataTypeResult = dataTypesHandler(Types, args);
-
 		if (dataTypeResult == -1)
 		{
+			va_end(args);
 			return (-1);
 		}
 		argCount += dataTypeResult;
 	}
 	else
-	{
-	argCount += write(1, curType, sizeof(char));
-	}
+		argCount += write(1, curType, sizeof(char));
 	curType++;
 	}
 	va_end(args);

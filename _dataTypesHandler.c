@@ -23,13 +23,12 @@ int dataTypesHandler(enDataTypes Types, va_list args)
 	case (strings):
 	strHolder = va_arg(args, char *);
 	if (strHolder == NULL)
-	{
-	return (write(1, "(nil)", sizeof("(nil)")));
-	}
+		return (write(1, "(nil)", sizeof("(nil)")));
+
 	return (write(1, strHolder, strlen(strHolder)));
 	case (percentSpecifier):
-	return (write(1, "%", sizeof(char)));
+		return (write(1, "%", sizeof(char)));
 	default:
-	return (write(1, "Err! Data types", sizeof("Err! Data types")));
+		return (-1);
 	}
 }
