@@ -37,7 +37,7 @@ int _printf(const char *format, ...)
 		argCount++;
 		if (curType[argCount] == '\\')
 		{
-		escapeSequenceHandler(curType[argCount + 1]);
+		argCount += escapeSequenceHandler(curType[argCount + 1]);
 		argCount++;
 		}
 		else
