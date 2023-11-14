@@ -23,7 +23,7 @@ int dataTypesHandler(enDataTypes Types, va_list args)
 	case (strings):
 	strHolder = va_arg(args, char *);
 	if (strHolder == NULL)
-		return (write(1, "(null)", sizeof("(null)")));
+		return (write(1, "(nil)", sizeof("(nil)")));
 
 	return (write(1, strHolder, strlen(strHolder)));
 	case (percentSpecifier):
