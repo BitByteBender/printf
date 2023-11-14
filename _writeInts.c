@@ -8,5 +8,5 @@
 int writeInts(int integerHolder)
 {
 	integersHandler(integerHolder);
-	return (sizeof(int));
+	return (BUFFER_SIZE);
 }
