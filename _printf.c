@@ -18,42 +18,18 @@
 int _printf(const char *format, ...)
 {
 	struct data DataHandler = {'\\', '%'};
-	int argCount = 0, dataTypeResult = 0;
-	const char *curType = format;
+	int argCount = 0;
 	struct data *ptrData = &DataHandler;
 
 	va_list args;
-
-	enDataTypes Types;
 
 	if (format == NULL)
 		return (-1);
 
 	va_start(args, format);
 
-	while (*curType != '\0')
-	{
-	if (*curType == (ptrData->PercentSpecifier))
-	{
-		curType++;
-		if (*curType == '\0')
-			break;
-		if (*curType == (ptrData->PercentSpecifier))
-			argCount += write(1, curType, sizeof(char));
-		else
-		{
-		Types = *curType;
-		dataTypeResult = dataTypesHandler(Types, args);
+	argCount = dataHandler(format, ptrData, args);
 
-		if (dataTypeResult == -1)
-			return (-1);
-		argCount += dataTypeResult;
-		}
-	}
-	else
-		argCount += write(1, curType, sizeof(char));
-	curType++;
-	}
 	va_end(args);
 	return (argCount);
 }

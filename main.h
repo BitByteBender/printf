@@ -17,7 +17,9 @@ typedef enum
 chars = 'c',
 strings = 's',
 percentSpecifier = '%',
-nullChar = 0
+nullChar = 0,
+signedIntD = 'd',
+signedIntI = 'i'
 } enDataTypes;
 
 /**
@@ -47,15 +49,15 @@ short calcExponent(short, short);
 
 void writeFunc(int, int);
 
-void writeInts(int);
-
-void writeStr(const char *);
+int writeStr(char *);
 
 int printIntegers(int, int);
 
 int _printf(const char *, ...);
 
 int dataTypesHandler(enDataTypes Types, va_list args);
+
+int dataHandler(const char *curType, struct data *ptr, va_list args);
 
 int escapeSequenceHandler(char);
 
@@ -67,7 +69,16 @@ int charsHandler(va_list args, int *);
 
 int stringsHandler(va_list args, int *);
 
+void integersHandler(int);
+
+int writeInts(int);
+
 void stHandler(const char **, int *, va_list, struct data *ptr);
 
 void nonPercentHandler(const char **curType, int *argC);
+
+int intsHandler(int integerHolder);
+
+int writeChar(int charHolder);
+
 #endif /* MAIN_H */
