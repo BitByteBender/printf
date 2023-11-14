@@ -17,10 +17,10 @@
  */
 int _printf(const char *format, ...)
 {
-	struct stDataHandlers DataHandler = {'\\', '%'};
+	struct data DataHandler = {'\\', '%'};
 	int argCount = 0, dataTypeResult = 0;
 	const char *curType = format;
-	struct stDataHandlers *ptrData = &DataHandler;
+	struct data *ptrData = &DataHandler;
 
 	va_list args;
 
