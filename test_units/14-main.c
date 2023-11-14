@@ -1,4 +1,4 @@
-#include "../headers/main.h"
+#include "../main.h"
 #include <stdio.h>
 /**
  *
@@ -23,5 +23,6 @@ int main(void)
 	printf("\nMy name in chars:[%c, %c, %c, %c, %c, %c, %c, %c]", 'S', 'O', 'U', 'F', 'I', 'A', 'N', 'E');
 	printf("\nTeam name:{%s%s %c %s%s}\n\n", "Sad", "gali", '&', "Mena", "Ujiri");
 	printf("\nTeam name:{%s%s%c%s%s %c %s%s%c%s%s}\n\n", "Souf", "iane", ' ', "Sad", "gali", '&', "Ekoro", "mena", ' ', "Uj", "iri");	
+	printf("%");
 	return (0);
 }
