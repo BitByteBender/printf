@@ -33,7 +33,7 @@ void percentSignHandler(const char **curType, int *argCount, va_list args)
 		dataTypeResult = dataTypesHandler(strings, args);
 		break;
 	case (nullChar):
-		write(1, "Err!\n", sizeof("Err!\n"));
+		write(2, "Err!\n", sizeof("Err!\n"));
 		exit(-1);
 	default:
 		dataTypeResult = -1;
@@ -42,7 +42,7 @@ void percentSignHandler(const char **curType, int *argCount, va_list args)
 
 	if (dataTypeResult == -1)
 	{
-		write(1, "Err!\n", sizeof("Err!\n"));
+		write(2, "Err!\n", sizeof("Err!\n"));
 		exit(-1);
 	}
 	(*curType)++;

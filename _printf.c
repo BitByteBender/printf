@@ -46,7 +46,7 @@ int _printf(const char *format, ...)
 		curType++;
 		if (*curType == '\0')
 		{
-		write(1, "Err!\n", sizeof("Err!\n"));
+		write(2, "Err!\n", sizeof("Err!\n"));
 		exit(-1);
 		}
 		if (*curType == ptrData->PercentSpecifier)
