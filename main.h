@@ -16,7 +16,8 @@ typedef enum
 {
 chars = 'c',
 strings = 's',
-percentSpecifier = '%'
+percentSpecifier = '%',
+nullChar = 0
 } enDataTypes;
 
 /**
@@ -58,4 +59,11 @@ int dataTypesHandler(enDataTypes Types, va_list args);
 
 int escapeSequenceHandler(char);
 
+char fetchChars(va_list args);
+
+void percentSignHandler(const char **, int *, va_list args);
+
+int charsHandler(va_list args, int *);
+
+int stringsHandler(va_list args, int *);
 #endif /* MAIN_H */

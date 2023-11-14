@@ -8,23 +8,26 @@
  * _printf - outputs data to console
  * @format: specified the type of args to be printed
  * processes the format string and prints specified data to console
- * Supports chars(%c), strings(%s) and percentSpecifier (%) using enums
+ * Supports chars(%c), strings(%s) using enums
+ * Support PercentSpecifier (%) using struct
+ *
  * checks if current char is part of format specifier or not
- * handles the case where (%) is at the end of a string
- * support (%%) as a special case and output it as a single (%)
+ *
+ * Call for percentSignHandler to handle:
+ * -> handles the case where (%) is at the end of a string
+ * -> handles the cse where (%) is before a data type
+ * -> support (%%) as a special case and output it as a single (%)
  * Return:
- * total number of processed chars
+ * total counts of processed chars
  */
 int _printf(const char *format, ...)
 {
 	struct stDataHandlers DataHandler = {'\\', '%'};
-	int argCount = 0, dataTypeResult = 0;
+	int argCount = 0;
 	const char *curType = format;
 	struct stDataHandlers *ptrData = &DataHandler;
 
 	va_list args;
-
-	enDataTypes Types;
 
 	if (format == NULL)
 		return (-1);
@@ -33,27 +36,27 @@ int _printf(const char *format, ...)
 
 	while (*curType != '\0')
 	{
-	if (*curType == (ptrData->PercentSpecifier))
+	if (*curType != ptrData->PercentSpecifier)
 	{
+		argCount += write(1, curType, sizeof(char));
 		curType++;
-		while (*curType == (ptrData->PercentSpecifier))
-		{
-			write(1, "%", sizeof(char));
-			argCount++;
-			curType++;
-		}
-		Types = *curType;
-		dataTypeResult = dataTypesHandler(Types, args);
-		if (dataTypeResult == -1)
-		{
-			va_end(args);
-			return (-1);
-		}
-		argCount += dataTypeResult;
 	}
 	else
-		argCount += write(1, curType, sizeof(char));
-	curType++;
+	{
+		curType++;
+		if (*curType == '\0')
+		{
+		write(1, "Err!\n", sizeof("Err!\n"));
+		exit(-1);
+		}
+		if (*curType == ptrData->PercentSpecifier)
+		{
+		argCount += write(1, "%", sizeof(char));
+		curType++;
+		}
+		else
+			percentSignHandler(&curType, &argCount, args);
+	}
 	}
 	va_end(args);
 	return (argCount);
