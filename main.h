@@ -33,11 +33,11 @@ newLine = 'n'
 } enEscapeSequences;
 
 /**
- * struct stDataHandlers - structure public scoped by default
+ * struct data - structure public scoped by default
  * @Backslash: char that holds '\'
  * @PercentSpecifier: char that hold '%'
  */
-struct stDataHandlers
+struct data
 {
 char Backslash;
 char PercentSpecifier;
@@ -66,4 +66,8 @@ void percentSignHandler(const char **, int *, va_list args);
 int charsHandler(va_list args, int *);
 
 int stringsHandler(va_list args, int *);
+
+void stHandler(const char **, int *, va_list, struct data *ptr);
+
+void nonPercentHandler(const char **curType, int *argC);
 #endif /* MAIN_H */
