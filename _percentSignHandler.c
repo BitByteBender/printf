@@ -32,11 +32,15 @@ void percentSignHandler(const char **curType, int *argCount, va_list args)
 	case (strings):
 		dataTypeResult = dataTypesHandler(strings, args);
 		break;
+	case (percentSpecifier):
+		*argCount += write(1, "%", sizeof(char));
+		break;
 	case (nullChar):
 		write(2, "Err!\n", sizeof("Err!\n"));
 		exit(-1);
 	default:
-		dataTypeResult = -1;
+		*argCount += write(1, "%", sizeof(char));
+		*argCount += write(1, *curType, sizeof(char));
 		break;
 	}
 
