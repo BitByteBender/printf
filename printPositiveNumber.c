@@ -13,18 +13,15 @@ int printPositiveNumber(int Num)
 	int powNum = _pow(10, digitCount(remainder) - 1);
 	unsigned short Counter = 1;
 
-	remainder = remainder / 10;
-
 	while (powNum > 0)
 	{
 		currentDigit = remainder / powNum;
 		_writeDigit(currentDigit);
-		remainder = remainder - (currentDigit * powNum);
+		remainder = remainder % powNum;
 		powNum = powNum / 10;
 		Counter++;
 	}
 
-	_writeDigit(remainder);
 	return (Counter);
 }
 /**
