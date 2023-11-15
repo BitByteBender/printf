@@ -44,7 +44,7 @@ int dataHandler(const char *curType, struct data *ptr, va_list args)
 			break;
 		case (signedIntD):
 		case (signedIntI):
-			argCount += writeInts(va_arg(args, int));
+			argCount += dataTypesHandler(Types, args);
 			break;
 		default:
 			write(1, &(ptr->PercentSpecifier), sizeof(char));

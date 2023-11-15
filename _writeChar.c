@@ -1,9 +1,9 @@
 #include "main.h"
 #include <stdlib.h>
 /**
- * intsHandler - handles integers data type
- * @integerHolder: integer holder
- * Return: size of int
+ * writeChar - writes a single char to stdout
+ * @charHolder: char to be printed
+ * Return: size of char
  */
 int writeChar(int charHolder)
 {

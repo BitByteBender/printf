@@ -1,50 +1,29 @@
 #include "main.h"
 #include <unistd.h>
+#include <stdarg.h>
 #include <stdlib.h>
 #include <string.h>
+#include <stdbool.h>
 /**
  * integersHandler - prints integer
- * @val: integer to be printed
+ * @args: variable arg list
  * checks if val is 0 or negative
- * extract digits from val and store them in buffer
- * adds negative sign if val was negative
- * writes buffer in reverse
+ * checks if Number is less than 0
+ * Return: number of chars to be printed
  */
-void integersHandler(int val)
+
+int integersHandler(va_list args)
 {
-	char buffer[BUFFER_SIZE];
-	size_t valChecker = 0, Length = 0;
+	int Number = va_arg(args, int);
 	unsigned short i = 0;
 
-	if (val == 0)
+	if (Number < 0)
 	{
-	write(1, "0", 1);
-	return;
+	writeChar('-');
+	Number = -Number;
+	i++;
 	}
 
-	if (val < 0)
-	{
-	valChecker = 1;
-	val = -val;
-	}
-
-	while (val > 0 && Length < BUFFER_SIZE)
-	{
-	buffer[Length++] = '0' + (val % 10);
-	val /= 10;
-	}
-
-	if (Length >= sizeof(buffer))
-	{
-	write(1, "Error!", 6);
-	return;
-	}
-
-	if (valChecker)
-	{
-	buffer[Length++] = '-';
-	}
-
-	for (i = 0; i < Length; i++)
-		write(1, &buffer[Length - i - 1], 1);
+	i += printPositiveNumber(Number);
+	return (i);
 }

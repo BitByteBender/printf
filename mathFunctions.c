@@ -1,14 +1,14 @@
 #include "main.h"
 
 /**
- * calcExponent - perform power calculation
+ * _pow - perform power calculation
  * @base: base number to be powered
  * @expo: exponent value
  *
  * Return:
  * calculated exponent
  */
-short calcExponent(short base, short expo)
+short _pow(short base, short expo)
 {
 	unsigned short i, exponent = 1;
 

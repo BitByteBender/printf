@@ -28,6 +28,9 @@ int dataTypesHandler(enDataTypes Types, va_list args)
 	return (write(1, strHolder, strlen(strHolder)));
 	case (percentSpecifier):
 		return (write(1, "%", sizeof(char)));
+	case (signedIntD):
+	case (signedIntI):
+		return (integersHandler(args));
 	default:
 		return (-1);
 	}

@@ -45,7 +45,7 @@ char Backslash;
 char PercentSpecifier;
 };
 
-short calcExponent(short, short);
+short _pow(short, short);
 
 void writeFunc(int, int);
 
@@ -69,7 +69,7 @@ int charsHandler(va_list args, int *);
 
 int stringsHandler(va_list args, int *);
 
-void integersHandler(int);
+int integersHandler(va_list args);
 
 int writeInts(int);
 
@@ -81,4 +81,9 @@ int intsHandler(int integerHolder);
 
 int writeChar(int charHolder);
 
+void _printDigit(int);
+
+void _writeDigit(int);
+
+int printPositiveNumber(int);
 #endif /* MAIN_H */
